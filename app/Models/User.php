@@ -7,6 +7,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -43,4 +44,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-}
+
+    public function coordonnee_bancaires(){
+        return $this->hasOne(CoordonneeBancaire::class);
+    }
+
+    public function ancien_achats(){
+        return $this->hasMany(AncienAchat::class);
+    }
+    public function produits(): BelongsToMany
+    {
+        return $this->belongsToMany(Produit::class);
+    }
+    }
