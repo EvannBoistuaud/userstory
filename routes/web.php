@@ -39,6 +39,7 @@ Route::delete('/panier', [PanierController::class, 'empty'])->name('panier.empty
 
 Route::get('/information_paiement', [PaiementController::class, 'info'])->name('paiement.info');
 Route::post('/coordonnees', [PaiementController::class,'coordonnees'])->name('paiement.coordonnees');
+Route::post('/type_paiement', [PaiementController::class,'typePaiement'])->name('paiement.type');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

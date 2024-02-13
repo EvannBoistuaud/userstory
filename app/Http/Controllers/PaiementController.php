@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CoordonneeBancaireRequest;
 use Carbon\Carbon;
 use App\Models\TypePaiement;
 use Illuminate\Http\Request;
@@ -15,18 +16,45 @@ class PaiementController extends Controller
         $user = Auth::user();
         $allPaiements = TypePaiement::all();
         $typePaiement = TypePaiement::where("id", $user->type_paiement_id)->first();
-        $coordonneeBancaire = CoordonneeBancaire::where("id", $user->typePaiement_id)->get();
-
+        $coordonneeBancaire = CoordonneeBancaire::where("user_id", $user->id)->first();
+        if ($coordonneeBancaire) {
+            $coordonneeBancaire->date_expiration = date('m/y', strtotime($coordonneeBancaire->date_expiration));
+        }
         return view("boutique.infoPaiement", compact("user", "typePaiement", "coordonneeBancaire", 'allPaiements'));
     }
 
-    public function coordonnees(Request $request, CoordonneeBancaire $coordonneeBancaire)
+    public function coordonnees(Request $request)
     {
-        $request->validate([
-            'expiration_date' => 'required|regex:/^\d{2}\/\d{2}$/',
-        ]);
-
-        $expirationDate = '01/' . $request->input('expiration_date'); // Ajouter '01' pour obtenir une date complète
+        $user = Auth::user();
+        $expirationDate = '01/' . $request->input('date_expiration'); // Ajouter '01' pour obtenir une date complète
         $expirationDate = Carbon::createFromFormat('d/m/y', $expirationDate)->format('Y-m-d');
+        $request->merge(['date_expiration' => $expirationDate]);
+        $data = $request->all();
+        $existsCoordonnes = CoordonneeBancaire::where('user_id', $user->id)->exists();
+
+
+
+        if ($existsCoordonnes) {
+            $coordonnees = CoordonneeBancaire::where('user_id', $user->id)->first();
+            $coordonnees->update($data);
+        } else {
+
+            $data['user_id'] = $user->id;
+            CoordonneeBancaire::create($data);
+        }
+
+        return redirect()->back()->with('success', '');
+    }
+    public function typePaiement(Request $request)
+    {
+
+        $user = Auth::user();
+        $data = $request->all();
+        $typePaiementData = json_decode($data['typePaiement'], true);
+
+        $typePaiementId = $typePaiementData['id'];
+        $user->update(['type_paiement_id' => $typePaiementId]);
+
+        return redirect()->back()->with('success', '');
     }
 }

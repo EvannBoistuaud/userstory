@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'type_paiement_id',
     ];
 
     /**
@@ -55,5 +56,8 @@ class User extends Authenticatable
     public function produits(): BelongsToMany
     {
         return $this->belongsToMany(Produit::class);
+    }
+    public function type_paiements(){
+        return $this->belongsTo(TypePaiement::class);
     }
     }
