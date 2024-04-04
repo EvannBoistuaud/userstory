@@ -14,8 +14,8 @@ class TypePaiementSeeder extends Seeder
     public function run(): void
     {
         TypePaiement::create(['nom_paiement' => 'Carte Bleu']);
-    TypePaiement::create(['nom_paiement' => 'PayPal']);
-    TypePaiement::create(['nom_paiement' => 'Paysafecard']);
-    TypePaiement::create(['nom_paiement' => 'Liquide']);
+        TypePaiement::create(['nom_paiement' => 'PayPal']);
+        TypePaiement::create(['nom_paiement' => 'Paysafecard']);
+        TypePaiement::create(['nom_paiement' => 'Liquide']);
     }
 }

@@ -28,7 +28,7 @@
             </div>
             <div class="w-full m-4">
                 <div class="p-6 bg-gray-100 rounded-lg">
-                    <h2 class="text-3xl font-semibold mb-2">Vos Coordonnées banquaire</h2>
+                    <h2 class="text-3xl font-semibold mb-2">Vos Coordonnées bancaire</h2>
                     <form method="POST" action="{{ route('paiement.coordonnees') }}" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                        @csrf
                         <div class="mb-4 flex">
