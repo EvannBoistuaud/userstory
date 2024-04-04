@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignIdFor(TypePaiement::class)->constrained();
+            $table->foreignIdFor(TypePaiement::class)->nullable()->constrained();
         });
         Schema::enableForeignKeyConstraints();
     }

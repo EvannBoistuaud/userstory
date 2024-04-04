@@ -54,6 +54,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <form action="{{ route('panier.payer') }}" method="POST">
+                        @csrf
+                        <button class="bg-green-700 rounded p-2 mt-2" type="submit">Payer</button>
+                    </form>
                 @else
                     <h3 class="text-2xl font-semibold mb-2">Vous n'avez aucun produit dans votre panier</h3>
                 @endif

@@ -14,4 +14,9 @@ class Produit extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function ancienAchats(): BelongsToMany
+    {
+        return $this->belongsToMany(AncienAchat::class);
+    }
 }

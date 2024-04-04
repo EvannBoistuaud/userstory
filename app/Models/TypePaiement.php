@@ -12,4 +12,7 @@ class TypePaiement extends Model
     public function users(){
         return $this->hasMany(User::class);
     }
+    public function ancienAchats(){
+        return $this->hasMany(AncienAchat::class);
+    }
 }

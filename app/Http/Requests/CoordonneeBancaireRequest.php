@@ -27,7 +27,6 @@ class CoordonneeBancaireRequest extends FormRequest
             'date_expiration' => 'required|regex:/^\d{2}\/\d{2}$/',
             'numero_carte' => ['required', 'regex:/^[0-9]{16}$/'],
             'code_securite' => ['required', 'digits:3'],
-            'expiration' => ['required', 'regex:/^(0[1-9]|1[0-2])\/[0-9]{2}$/'],
         ];
     }
     public function messages()

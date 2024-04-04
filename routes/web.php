@@ -34,6 +34,7 @@ Route::get('/produit/{produit}', [ProduitController::class, 'show'])->name('prod
 
 Route::get('/panier', [PanierController::class, 'index'])->name('panier.index');
 Route::post('/panier/{produit}', [PanierController::class, 'add'])->name('panier.add');
+Route::post('/panier', [PanierController::class,'payer'])->name('panier.payer');
 Route::delete('/panier/{produit}', [PanierController::class, 'delete'])->name('panier.delete');
 Route::delete('/panier', [PanierController::class, 'empty'])->name('panier.empty');
 

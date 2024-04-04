@@ -54,7 +54,7 @@
                         <div class="mb-4 flex">
                             <div class="mr-2 w-1/3">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="code">
-                                    Code de sécurité (CVV)
+                                    Code de sécurité
                                 </label>
                                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code_securite" name="code_securite" type="text" placeholder="Code de sécurité" value="{{ isset($coordonneeBancaire) ? $coordonneeBancaire->code_securite : '' }}">
                             </div>
